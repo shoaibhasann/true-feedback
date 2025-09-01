@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# True Feedback
+
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/) 
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/) 
+[![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongoosejs.com/) 
+[![Zod](https://img.shields.io/badge/Zod-000000?style=for-the-badge&logo=javascript&logoColor=white)](https://github.com/colinhacks/zod) 
+[![Bcrypt](https://img.shields.io/badge/Bcrypt-003366?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://www.npmjs.com/package/bcrypt) 
+[![Resend](https://img.shields.io/badge/Resend-FF6F61?style=for-the-badge)](https://resend.com/) 
+[![React Email](https://img.shields.io/badge/React_Email-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.email/)
+
+---
+
+## Overview
+
+**True Feedback** is a full-stack web application built with **Next.js**, allowing users to create and receive feedback from the community.  
+
+Users can open a feedback request, and other True Feedback users can respond. The app emphasizes **community interaction, simplicity, and secure user management**.
+
+---
+
+## Features
+
+- User authentication with **NextAuth.js** (signup, signin)  
+- Email verification during registration using **Resend** and **React Email** templates  
+- Forgot password functionality  
+- Input validation using **Zod**  
+- Database management with **MongoDB** and **Mongoose**  
+- Password hashing with **Bcrypt**  
+- Two main models:  
+  - **User**: Stores user info and authentication details  
+  - **Message (Feedback)**: Stores feedback content and timestamp (`content`, `createdAt`)  
+
+---
+
+## Tech Stack
+
+- **Frontend & Backend**: Next.js  
+- **Authentication**: NextAuth.js  
+- **Database**: MongoDB + Mongoose  
+- **Validation**: Zod  
+- **Email Templates**: React Email  
+- **Email Sending**: Resend  
+- **Password Hashing**: Bcrypt  
+
+---
+
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/shoaibhasann/true-feedback.git
+cd true-feedback
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install Dependencies:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create a .env.local file in the root directory:
 
-## Learn More
+```
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+RESEND_API_KEY=your_resend_api_key
+EMAIL_FROM=your_email@example.com
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npm run dev
 
-## Deploy on Vercel
+-> Open http://localhost:3000
+ to view the app.
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
+- Signup & Email Verification: New users must verify their email before logging in.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Login: Secure authentication using NextAuth.js.
+
+- Create Feedback: Users can open a feedback request.
+
+- Send Feedback: Other users can respond to feedback requests.
+
+- Forgot Password: Users can reset their password securely.
+
+## Future Enhancements
+
+- Pagination for feedback messages
+
+- Real-time notifications for new feedback
+
+- User profile customization and avatars
+
+- Admin dashboard for managing users and messages
+
+## License
+
+```This project is licensed under the MIT License.```
+
+## Contact
+
+``Made by ❤️ Shoaib`` 
