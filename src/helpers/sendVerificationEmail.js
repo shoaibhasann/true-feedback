@@ -4,7 +4,7 @@ import { ErrorResponse, SuccessResponse } from "@/lib/apiResponse.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmailVerification(email, username, verifyCode) {
+export async function sendVerificationEmail(email, username, verifyCode) {
   try {
     await resend.emails.send({
       from: "oboarding@resend.dev",
