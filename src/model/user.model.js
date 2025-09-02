@@ -53,3 +53,7 @@ const userSchema = new Schema({
 // user model
 export const UserModel = (mongoose.models.User) || mongoose.model("User", userSchema);
 
+
+// message model
+export const MessageModel = (mongoose.models.Message) || mongoose.model("Message", messageSchema);
+
