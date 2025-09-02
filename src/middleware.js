@@ -27,5 +27,5 @@ export async function middleware(request) {
 // see "Matching paths" below to learn more
 // matcher defined on which routes middleware actually work or inject
 export const config = {
-  matcher: ["/", "/sign-in", "/sign-up", "/dashboard/:path*", "/verify/:path*"],
+  matcher: ["/", "/sign-in", "/dashboard/:path*", "/sign-up", "/verify/:path*"],
 };

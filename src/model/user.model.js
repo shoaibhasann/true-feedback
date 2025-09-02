@@ -37,11 +37,13 @@ const userSchema = new Schema({
   },
   verifyCode: {
     type: String,
-    default: false
   },
   verifyCodeExpiry: {
     type: Date,
-    required: [true, "Verification code expiry is required"]
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
   },
   isAcceptingMessage: {
     type: Boolean,

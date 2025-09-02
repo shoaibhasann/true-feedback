@@ -2,7 +2,7 @@ import { ErrorResponse, SuccessResponse } from "@/lib/apiResponse";
 import dbConnect from "@/lib/dbConnect";
 import { UserModel } from "@/model/user.model";
 
-export async function GET(request) {
+export async function POST(request) {
   await dbConnect();
 
   try {
@@ -12,11 +12,17 @@ export async function GET(request) {
       username,
     });
 
-    const isCodeVerified = user.VerifyCode === code;
-    const isCodeNotExpired = new Date(user.VerifyCodeExpiry) > new Date();
+    const isCodeVerified = user.verifyCode === code;
+    const isCodeNotExpired =
+      new Date(user.verifyCodeExpiry).getTime() > new Date().getTime();
 
     if (isCodeVerified && isCodeNotExpired) {
       user.isVerified = true;
+      
+      // clean up fields
+      user.verifyCode = undefined;
+      user.verifyCodeExpiry = undefined;
+
       await user.save();
       return Response.json(SuccessResponse("Account verified successfully"), {
         status: 200,

@@ -16,12 +16,13 @@ export const authOptions = {
       async authorize(credentials, req) {
         await dbConnect();
         try {
+          console.log("credentials", credentials);
           const user = await UserModel.findOne({
             $or: [
               { email: credentials.identifier },
               { username: credentials.identifier },
             ],
-          });
+          }).select("+password");
 
           if (!user) {
             throw new Error("No user found with this email");

@@ -22,6 +22,7 @@ export async function GET(request) {
 
     if (!result.success) {
       const usernameErrors = result.error.format().username?._errors || [];
+
       const message =
         usernameErrors?.length > 0
           ? usernameErrors.join(", ")
@@ -34,12 +35,12 @@ export async function GET(request) {
     const isUserExists = await UserModel.findOne({ username });
 
     if (isUserExists) {
-      return Response.json(ErrorResponse("Username already taken"), {
+      return Response.json(ErrorResponse("❌ Username already taken"), {
         status: 400,
       });
     }
 
-    return Response.json(SuccessResponse("Username is available"), {
+    return Response.json(SuccessResponse("✅ Username is available"), {
       status: 200,
     });
   } catch (err) {
