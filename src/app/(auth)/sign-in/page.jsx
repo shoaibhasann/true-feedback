@@ -2,7 +2,7 @@
 
 import { signInSchema } from "@/schemas/signInSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignInForm(){
 
@@ -44,7 +44,7 @@ export default function SignInForm(){
         const result = await signIn("credentials", {
             redirect: false,
             identifier: values.identifier,
-            password: values.password
+            password: values.password,
         });
 
         if(result?.error){
