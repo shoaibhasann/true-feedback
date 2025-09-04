@@ -9,7 +9,7 @@ export async function GET(request) {
   await dbConnect();
 
   try {
-    const session = getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     const user = session?.user;
 
     if (!session && !session.user) {
@@ -17,8 +17,10 @@ export async function GET(request) {
         status: 401,
       });
     }
-
-    const userId = new mongoose.Types.ObjectId(user._id);
+    console.log("session", session);
+    console.log("user", user);
+    // const userId = new mongoose.Types.ObjectId(user._id);
+    const userId = user?._id;
 
     const foundUser = await UserModel.aggregate([
       { $match: { _id: userId } },
@@ -32,7 +34,9 @@ export async function GET(request) {
     }
 
     return Response.json(
-      SuccessResponse("Messages fetched successfully!", foundUser[0].messages),
+      SuccessResponse("Messages fetched successfully!", {
+        messages: foundUser[0].messages,
+      }),
       {
         status: 200,
       }
